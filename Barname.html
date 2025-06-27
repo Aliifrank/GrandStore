@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>برنامه‌ها</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: #e0f2f1;
+      color: #004d40;
+      padding: 1rem;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .apps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      gap: 1rem;
+    }
+    .app {
+      background: #b2dfdb;
+      border-radius: 15px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,105,92,0.3);
+    }
+    .app img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 0.5rem;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+    .app-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .app-download {
+      text-decoration: none;
+      background: #00796b;
+      color: #a7f3d0;
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .app-download:hover {
+      background: #004d40;
+    }
+    a.back {
+      display: inline-block;
+      margin: 1rem 0;
+      color: #004d40cc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back:hover {
+      text-decoration: underline;
+      color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">← بازگشت به صفحه اصلی</a>
+  <h1>برنامه‌ها</h1>
+  <div id="appsContainer" class="apps-container" role="list" aria-live="polite"></div>
+
+  <script>
+    const apps = [
+      { id: 1, type: 'app', title: 'ماشین حساب ساده', img: 'https://cdn-icons-png.flaticon.com/512/992/992700.png', download: '#' },
+      { id: 2, type: 'app', title: 'دفترچه یادداشت', img: 'https://cdn-icons-png.flaticon.com/512/1828/1828919.png', download: '#' },
+      // برنامه‌های بیشتر اینجا اضافه کن
+    ];
+
+    const container = document.getElementById('appsContainer');
+    function renderApps() {
+      container.innerHTML = '';
+      const programs = apps.filter(app => app.type === 'app');
+      if(programs.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#004d40cc;">برنامه‌ای موجود نیست.</p>';
+        return;
+      }
+      programs.forEach(app => {
+        const div = document.createElement('div');
+        div.className = 'app';
+        div.setAttribute('role', 'listitem');
+        div.innerHTML = `
+          <img src="${app.img}" alt="${app.title}" />
+          <div class="app-title">${app.title}</div>
+          <a href="${app.download}" target="_blank" class="app-download" rel="noopener">دانلود</a>
+        `;
+        container.appendChild(div);
+      });
+    }
+    renderApps();
+  </script>
+</body>
+</html>

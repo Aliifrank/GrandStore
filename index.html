@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MOOD STORE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    body {
+      margin: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      background: linear-gradient(135deg, #e0f2f1 0%, #80cbc4 100%);
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    header {
+      background: linear-gradient(145deg, #222, #111);
+      color: #eee;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 1.5rem 3rem;
+      border-radius: 20px;
+      box-shadow:
+        8px 8px 15px #0a0a0a,
+        -8px -8px 15px #333,
+        inset 0 0 15px #444;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+      cursor: default;
+      position: relative;
+      justify-content: center;
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    button.settings-btn {
+      background: linear-gradient(145deg, #333, #222);
+      border: none;
+      border-radius: 50%;
+      color: #eee;
+      font-size: 1.8rem;
+      width: 50px;
+      height: 50px;
+      box-shadow:
+        4px 4px 8px #0b0b0b,
+        -4px -4px 8px #444;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    button.settings-btn:hover {
+      background: #ffcc00;
+      color: #121212;
+      box-shadow:
+        0 0 12px #ffcc00,
+        inset 0 0 10px #b38f00;
+    }
+
+    .links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 3rem;
+    }
+
+    .links-container a {
+      text-decoration: none;
+      background-color: #00796b;
+      color: #a7f3d0;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 8px 15px rgba(0, 121, 107, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+    }
+    .links-container a:hover {
+      background-color: #004d40;
+      box-shadow: 0 12px 25px rgba(0, 77, 64, 0.8);
+    }
+
+    /* پنل تنظیمات */
+    #settingsPanel {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 320px;
+      height: 100%;
+      background: #00796b;
+      color: #a7f3d0;
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      box-shadow: 5px 0 15px rgba(0, 77, 64, 0.8);
+      transition: left 0.35s ease;
+      z-index: 1100;
+      overflow-y: auto;
+      user-select: none;
+      border-radius: 0 25px 25px 0;
+      font-weight: 600;
+    }
+    #settingsPanel.open {
+      left: 0;
+    }
+    #settingsPanel h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+      user-select: none;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    #settingsPanel label {
+      display: block;
+      margin: 1.2rem 0 0.5rem 0;
+      cursor: pointer;
+      font-size: 1.1rem;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    #settingsPanel input[type="checkbox"] {
+      margin-left: 0.8rem;
+      cursor: pointer;
+      transform: scale(1.3);
+      vertical-align: middle;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+    }
+    #settingsPanel .btn-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 2.4rem;
+      cursor: pointer;
+      color: #a7f3d0;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    #settingsPanel .btn-close:hover {
+      color: #004d40;
+      filter: drop-shadow(0 0 8px #004d40);
+    }
+    #settingsPanel .info {
+      font-size: 1.05rem;
+      color: #b2dfdbcc;
+      margin: 0.8rem 0 2rem 0;
+      user-select: text;
+      text-shadow: 0 0 5px #004d40bb;
+    }
+    .share-btn {
+      margin-top: 3rem;
+      background-color: #00796b;
+      border: none;
+      color: #a7f3d0;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 121, 107, 0.4);
+      user-select: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 700;
+      width: 100%;
+    }
+    .share-btn:hover {
+      background-color: #004d40;
+      box-shadow: 0 8px 25px rgba(0, 77, 64, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    MOOD STORE
+    <button class="settings-btn" aria-label="تنظیمات" onclick="toggleSettings()">⚙️</button>
+  </header>
+
+  <div class="links-container">
+    <a href="Barname.html" role="button" aria-label="مشاهده برنامه‌ها">📱 برنامه‌ها</a>
+    <a href="Bazi.html" role="button" aria-label="مشاهده بازی‌ها">🎮 بازی‌ها</a>
+  </div>
+
+  <aside id="settingsPanel" aria-hidden="true" role="region" aria-label="تنظیمات بازار">
+    <button class="btn-close" aria-label="بستن تنظیمات" onclick="toggleSettings()">×</button>
+    <h2>تنظیمات</h2>
+    <label for="darkModeToggle">
+      حالت تاریک
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(this.checked)" aria-checked="false" role="switch" />
+    </label>
+    <div class="info" tabindex="0">حساب کاربری: علی کارگر</div>
+    <button class="share-btn" onclick="shareApp()">ارسال برنامه به دوستان</button>
+  </aside>
+
+  <script>
+    function toggleSettings() {
+      const panel = document.getElementById('settingsPanel');
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open');
+      panel.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    }
+
+    function toggleDarkMode(enabled) {
+      if(enabled) {
+        document.body.style.background = '#121212';
+        document.body.style.color = '#ddd';
+      } else {
+        document.body.style.background = 'linear-gradient(135deg, #e0f2f1 0%, #80cbc4 100%)';
+        document.body.style.color = '#222';
+      }
+    }
+
+    function shareApp() {
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          text: 'این برنامه عالیه، ببین!',
+          url: window.location.href
+        })
+        .then(() => console.log('اشتراک‌گذاری موفق'))
+        .catch((error) => alert('اشتراک‌گذاری انجام نشد: ' + error));
+      } else {
+        copyLink();
+        alert('لینک برنامه کپی شد، آن را برای دوستان‌تان ارسال کنید.');
+      }
+    }
+
+    function copyLink() {
+      const dummy = document.createElement('input');
+      document.body.appendChild(dummy);
+      dummy.value = window.location.href;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+    }
+  </script>
+
+</body>
+</html>
