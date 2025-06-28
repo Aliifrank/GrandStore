@@ -3,101 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <title>بازی‌ها</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
-      font-family: 'Vazirmatn', sans-serif;
-      background: #e0f2f1;
-      color: #004d40;
+      font-family: sans-serif;
+      background: #f0f4f3;
+      color: #00332e;
       padding: 1rem;
-      min-height: 100vh;
+      margin: 0;
     }
     h1 {
       text-align: center;
+      color: #00695c;
       margin-bottom: 1rem;
     }
-    .apps-container {
+    .games-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
     }
-    .app {
-      background: #b2dfdb;
-      border-radius: 15px;
+    .game {
+      background: #a7d7cc;
+      border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,105,92,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    .app img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
-      object-fit: contain;
-    }
-    .app-title {
-      font-weight: 700;
+    .game-title {
+      font-weight: bold;
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
-    .app-download {
+    .game-size {
+      font-size: 0.85rem;
+      background: #004d40cc;
+      color: #e0f2f1;
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+    }
+    .game-download {
+      display: inline-block;
       text-decoration: none;
-      background: #00796b;
-      color: #a7f3d0;
+      background: #00695c;
+      color: white;
       padding: 0.4rem 1rem;
       border-radius: 25px;
-      font-weight: 600;
-      display: inline-block;
-      transition: background 0.3s ease;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-    .app-download:hover {
+    .game-download:hover {
       background: #004d40;
     }
     a.back {
       display: inline-block;
-      margin: 1rem 0;
-      color: #004d40cc;
+      margin-bottom: 1rem;
+      color: #00332e;
       text-decoration: none;
-      font-weight: 600;
-    }
-    a.back:hover {
-      text-decoration: underline;
-      color: #004d40;
     }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back">← بازگشت به صفحه اصلی</a>
+  <a href="index.html" class="back">← بازگشت</a>
   <h1>بازی‌ها</h1>
-  <div id="appsContainer" class="apps-container" role="list" aria-live="polite"></div>
-
-  <script>
-    const apps = [
-      { id: 3, type: 'game', title: 'مار پیکسلی', img: 'https://cdn-icons-png.flaticon.com/512/4159/4159695.png', download: '#' },
-      { id: 4, type: 'game', title: 'دویدن سریع', img: 'https://cdn-icons-png.flaticon.com/512/482/482497.png', download: '#' },
-      // بازی‌های بیشتر اینجا اضافه کن
-    ];
-
-    const container = document.getElementById('appsContainer');
-    function renderGames() {
-      container.innerHTML = '';
-      const games = apps.filter(app => app.type === 'game');
-      if(games.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#004d40cc;">بازی‌ای موجود نیست.</p>';
-        return;
-      }
-      games.forEach(game => {
-        const div = document.createElement('div');
-        div.className = 'app';
-        div.setAttribute('role', 'listitem');
-        div.innerHTML = `
-          <img src="${game.img}" alt="${game.title}" />
-          <div class="app-title">${game.title}</div>
-          <a href="${game.download}" target="_blank" class="app-download" rel="noopener">دانلود</a>
-        `;
-        container.appendChild(div);
-      });
-    }
-    renderGames();
-  </script>
+  <div class="games-container">
+    <div class="game">
+      <div class="game-title">Stick War Legacy</div>
+      <div class="game-size">87 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Stick-War-Legacy-2023.5.907-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Temple Run</div>
+      <div class="game-size">72 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Temple-Run-1.30.2-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">DRIVE</div>
+      <div class="game-size">102 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/DRIVE-3.1.141-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Darkrise</div>
+      <div class="game-size">95 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Darkrise-0.16.9-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Cooking Fever</div>
+      <div class="game-size">80 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Cooking-Fever-24.1.1-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Temple Run 2</div>
+      <div class="game-size">75 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Temple-Run-2-1.120.0-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Magic Tiles 3</div>
+      <div class="game-size">50 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Magic-Tiles-3-12.054.005-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="game">
+      <div class="game-title">Snake.io</div>
+      <div class="game-size">40 مگابایت</div>
+      <a class="game-download" href="https://dl.mahroid.com/game/Snake-io-2.2.35-Mod(Mahroid.com).apk">دانلود</a>
+    </div>
+  </div>
 </body>
 </html>
