@@ -3,101 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <title>برنامه‌ها</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
-      font-family: 'Vazirmatn', sans-serif;
+      font-family: sans-serif;
       background: #e0f2f1;
       color: #004d40;
       padding: 1rem;
-      min-height: 100vh;
+      margin: 0;
     }
     h1 {
       text-align: center;
+      color: #00796b;
       margin-bottom: 1rem;
     }
     .apps-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
     }
     .app {
       background: #b2dfdb;
-      border-radius: 15px;
+      border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,105,92,0.3);
-    }
-    .app img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
-      object-fit: contain;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     .app-title {
-      font-weight: 700;
+      font-weight: bold;
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
+    .app-size {
+      font-size: 0.85rem;
+      background: #004d40cc;
+      color: #e0f2f1;
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+    }
     .app-download {
+      display: inline-block;
       text-decoration: none;
       background: #00796b;
-      color: #a7f3d0;
+      color: white;
       padding: 0.4rem 1rem;
       border-radius: 25px;
-      font-weight: 600;
-      display: inline-block;
-      transition: background 0.3s ease;
+      font-weight: bold;
+      transition: background 0.3s;
     }
     .app-download:hover {
       background: #004d40;
     }
     a.back {
       display: inline-block;
-      margin: 1rem 0;
-      color: #004d40cc;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    a.back:hover {
-      text-decoration: underline;
+      margin-bottom: 1rem;
       color: #004d40;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back">← بازگشت به صفحه اصلی</a>
+  <a href="index.html" class="back">← بازگشت</a>
   <h1>برنامه‌ها</h1>
-  <div id="appsContainer" class="apps-container" role="list" aria-live="polite"></div>
-
-  <script>
-    const apps = [
-      { id: 1, type: 'app', title: 'ماشین حساب ساده', img: 'https://cdn-icons-png.flaticon.com/512/992/992700.png', download: '#' },
-      { id: 2, type: 'app', title: 'دفترچه یادداشت', img: 'https://cdn-icons-png.flaticon.com/512/1828/1828919.png', download: '#' },
-      // برنامه‌های بیشتر اینجا اضافه کن
-    ];
-
-    const container = document.getElementById('appsContainer');
-    function renderApps() {
-      container.innerHTML = '';
-      const programs = apps.filter(app => app.type === 'app');
-      if(programs.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#004d40cc;">برنامه‌ای موجود نیست.</p>';
-        return;
-      }
-      programs.forEach(app => {
-        const div = document.createElement('div');
-        div.className = 'app';
-        div.setAttribute('role', 'listitem');
-        div.innerHTML = `
-          <img src="${app.img}" alt="${app.title}" />
-          <div class="app-title">${app.title}</div>
-          <a href="${app.download}" target="_blank" class="app-download" rel="noopener">دانلود</a>
-        `;
-        container.appendChild(div);
-      });
-    }
-    renderApps();
-  </script>
+  <div class="apps-container">
+    <div class="app">
+      <div class="app-title">Google Chrome</div>
+      <div class="app-size">150 مگابایت</div>
+      <a class="app-download" href="https://www.dl.farsroid.com/ap/Chrome-137.0.7151.115-29(FarsRoid.Com).apks">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">SHAREit Premium (نسخه جدید)</div>
+      <div class="app-size">56 مگابایت</div>
+      <a class="app-download" href="https://www.dl.farsroid.com/ap/SHAREit-Premium-6.52.18(www.farsroid.com).apk">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">VK</div>
+      <div class="app-size">45 مگابایت</div>
+      <a class="app-download" href="https://www.dl.farsroid.com/ap/VK-8.135(www.farsroid.com).apk">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">VivaVideo VIP</div>
+      <div class="app-size">120 مگابایت</div>
+      <a class="app-download" href="https://dl.mahroid.com/app/VivaVideo-VIP-9.28.6-6928062(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">WhatsApp Messenger</div>
+      <div class="app-size">115 مگابایت</div>
+      <a class="app-download" href="https://dl.mahroid.com/app/WhatsApp-Messenger-2.25.19.70(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">SHAREit Premium (نسخه قدیمی)</div>
+      <div class="app-size">58 مگابایت</div>
+      <a class="app-download" href="https://dl.mahroid.com/app/SHAREit-Premium-1.1.89(Mahroid.com).apk">دانلود</a>
+    </div>
+    <div class="app">
+      <div class="app-title">LP Installer</div>
+      <div class="app-size">65 مگابایت</div>
+      <a class="app-download" href="https://dl.mahroid.com/app/LP-Installer-11.9.0(Mahroid.com).apk">دانلود</a>
+    </div>
+  </div>
 </body>
 </html>
